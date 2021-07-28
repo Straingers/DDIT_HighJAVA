@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>ServletEx</display-name>
+	
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>SelectMemberAllServlet</servlet-name> -->
+<!-- 		<servlet-class>kr.or.ddit.member.controller.SelectMemberAllServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>SelectMemberAllServlet</servlet-name> -->
+<!-- 		<url-pattern>/member/list.do</url-pattern> -->
+<!-- 	</servlet-mapping> -->
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>InsertMemberServlet</servlet-name> -->
+<!-- 		<servlet-class>kr.or.ddit.member.controller.InsertMemberServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>InsertMemberServlet</servlet-name> -->
+<!-- 		<url-pattern>/member/insert.do</url-pattern> -->
+<!-- 	</servlet-mapping> -->
+	<servlet>
+		<servlet-name>WebController</servlet-name>
+		<servlet-class>kr.or.ddit.comm.controller.WebController</servlet-class>
+		<init-param>
+			<param-name>handler-config</param-name>
+			<param-value>/WEB-INF/handler.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WebController</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	<filter>
+  		<filter-name>CustomEncoding</filter-name>
+  		<filter-class>kr.or.ddit.comm.filter.CustomEncoding</filter-class>
+  	</filter>
+  	<filter-mapping>
+  		<filter-name>CustomEncoding</filter-name>
+  		<url-pattern>/*</url-pattern>
+  	</filter-mapping>
+	<filter>
+  		<filter-name>MultipartParser</filter-name>
+  		<filter-class>kr.or.ddit.comm.filter.MultipartParser</filter-class>
+  	</filter>
+  	<filter-mapping>
+  		<filter-name>MultipartParser</filter-name>
+  		<url-pattern>/*</url-pattern>
+  	</filter-mapping>
+
+  	
+</web-app>

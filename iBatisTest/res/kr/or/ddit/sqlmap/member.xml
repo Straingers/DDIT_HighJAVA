@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="member">
+	<!-- 
+	이 영역에 sql문에 맞는 태그를 사용하여 SQL문을 기술한다.
+	
+	사용할 수 있는 가본적인 태그들
+	<select> ~ </select>
+	<insert> ~ </insert>
+	<update> ~ </update>
+	<delete> ~ </delete>
+		
+	위 태그에서 사용되는 속성들
+	
+	1) id속성 : 해당 태그를 호출할 때 <sqlMap>태그의 namespace와 연결하여 사용하는 이름
+	
+	2) parameterClass속성 : sql문에 사용될 데이터가 들어있는 객체를 지정한다.
+	   (보통 VO클래스나 자바의 자료형이름 등이 사용된다.)
+	   (typeAlias로 지정한 alias명을 사용할 수 있다.)
+	
+	3) resultClass속성 : select문을 실행한 결과를 담을 객체를 지정한다.
+					   (보통 VO클래스나 자바의 자료형이름을 사용한다.)		
+ 	-->
+ 	
+ 	<insert id="insertMember" parameterClass="memVO">
+ 		INSERT INTO MYMEMBER(MEM_ID, MEM_NAME, MEM_TEL, MEM_ADDR) 
+ 		VALUES(#memId#, #memName#, #memTel#, #memAddr#)
+ 	</insert>
+ 	
+ 	<update id="updateMember" parameterClass="memVO">
+ 		UPDATE MYMEMBER 
+ 		SET MEM_NAME = #memName# 
+ 		  , MEM_TEL = #memTel# 
+ 		  , MEM_ADDR = #memAddr# 
+ 		WHERE MEM_ID = #memId# 
+ 	</update>
+ 
+ 	<delete id="deleteMember" parameterClass="String">
+ 		DELETE FROM MYMEMBER 
+ 		WHERE  MEM_ID = #memId#
+ 	</delete>
+ 	
+ 	<resultMap class="memVO" id="memMap">
+ 		<result property="memId" column="MEM_ID"/>
+ 		<result property="memName" column="MEM_NAME"/>
+ 		<result property="memTel" column="MEM_TEL"/>
+ 		<result property="memAddr" column="MEM_ADDR"/>
+ 	</resultMap>
+ 	<select id="getMemberAll" resultMap="memMap">
+ 		SELECT *
+ 		FROM   MYMEMBER
+ 	</select>
+<!--  	<select id="getMemberAll" resultClass="kr.or.ddit.member.vo.MemberVO"> -->
+<!--  		SELECT MEM_ID   memId -->
+<!--  			 , MEM_NAME memName -->
+<!--  			 , MEM_TEL  memTel -->
+<!--  			 , MEM_ADDR memAddr -->
+<!--  		FROM   MYMEMBER -->
+<!--  	</select> -->
+	<select id="getMember" parameterClass="String" resultClass="int">
+		SELECT count(*) cnt
+		FROM   MYMEMBER 
+		WHERE  MEM_ID = #memId#
+	</select>
+	
+	<select id="getSearchMember" parameterClass="memVO" resultMap="memMap">
+			SELECT * 
+			FROM   MYMEMBER
+			WHERE  1=1
+			<isNotEmpty property="memId">
+				AND    MEM_ID = #memId# 
+			</isNotEmpty>
+			<isNotEmpty property="memName">
+				AND    MEM_NAME =#memName# 
+			</isNotEmpty>
+			<isNotEmpty property="memTel">
+				AND    MEM_TEL = #memTel# 
+			</isNotEmpty>
+			<isNotEmpty property="memAddr">
+				AND    MEM_ADDR LIKE '%' || #memAddr# || '%'
+			</isNotEmpty>
+	</select>
+</sqlMap>			

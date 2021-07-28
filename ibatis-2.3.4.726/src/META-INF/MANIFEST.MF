@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.5.3 
+Created-By: 1.5.0_12-b04 (Sun Microsystems Inc.)
+Built-On: 2008/09/09 09:43
+
+Name: com/ibatis/
+Implementation-Title: iBATIS Data Mapper
+Implementation-Version: 2.3.4 build# 726
+Implementation-Vendor: Apache Software Foundation
+

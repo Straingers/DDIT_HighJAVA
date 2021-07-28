@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="atchFile">
+	<resultMap class="kr.or.ddit.member.vo.AtchFileVO" id="atchFileDetailMap">
+		<result property="atchFileId" column="ATCH_FILE_ID"/>
+		<result property="fileSn" column="FILE_SN"/>
+		<result property="fileStreCours" column="FILE_STRE_COURS"/>
+		<result property="streFileNm" column="STRE_FILE_NM"/>
+		<result property="orignlFileNm" column="ORIGNL_FILE_NM"/>
+		<result property="fileExtsn" column="FILE_EXTSN"/>
+		<result property="fileCn" column="FILE_CN"/>
+		<result property="fileSize" column="FILE_SIZE"/>
+	</resultMap>
+	
+	<select id="getAtchFileList" resultMap="atchFileDetailMap">
+		
+		SELECT *
+		FROM   ATCH_FILE_DETAIL
+		WHERE  ATCH_FILE_ID = #atchFileId#
+		
+	</select>
+	
+	<select id="getAtchFileDetail" resultMap="atchFileDetailMap">
+		SELECT *
+		FROM   ATCH_FILE_DETAIL
+		WHERE  ATCH_FILE_ID = #atchFileId#
+		AND    FILE_SN = #fileSn#
+	</select>
+	
+	<insert id="insertAtchFile">
+		<selectKey keyProperty="atchFileId" resultClass="long">
+			SELECT ATCH_FILE_SEQ.NEXTVAL 
+			FROM   DUAL
+		</selectKey>
+		INSERT INTO ATCH_FILE (
+				ATCH_FILE_ID
+			  , CREAT_DT
+			  , USE_AT
+		)
+		VALUES (
+			#atchFileId#
+		  , SYSDATE
+		  , 'Y'		
+		)
+	</insert>
+		
+	<insert id="insertAtchFileDetail">
+		INSERT INTO ATCH_FILE_DETAIL (
+				  ATCH_FILE_ID
+				, FILE_SN
+				, FILE_STRE_COURS
+				, STRE_FILE_NM
+				, ORIGNL_FILE_NM
+				, FILE_EXTSN
+				, FILE_CN
+				, FILE_SIZE
+		)
+		VALUES (
+			  #atchFileId#
+			, (SELECT NVL(MAX(FILE_SN), 0) + 1 
+			   FROM   ATCH_FILE_DETAIL 
+			   WHERE  ATCH_FILE_ID = #atchFileId#)
+			, #fileStreCours#
+			, #streFileNm#
+			, #orignlFileNm#
+			, #fileExtsn#
+			, #fileCn#
+			, #fileSize#
+		)
+	</insert>
+</sqlMap>			

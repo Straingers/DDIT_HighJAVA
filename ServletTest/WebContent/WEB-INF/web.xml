@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>ServletTest</display-name>
+
+
+  <servlet>
+  	<servlet-name>T01_ServletLifeCycle</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T01_ServletLifeCycle</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  </servlet>	
+  <servlet-mapping>
+  	<servlet-name>T01_ServletLifeCycle</servlet-name>
+  	<url-pattern>/T01_ServletLifeCycle</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>T02_ServletTest</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T02_ServletTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>T02_ServletTest</servlet-name>
+  	<url-pattern>/T02_ServletTest</url-pattern>
+  </servlet-mapping>
+	
+  <servlet>
+  	<servlet-name>T03_ServletParameterTest</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T03_ServletParameterTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>T03_ServletParameterTest</servlet-name>
+  	<url-pattern>/T03_ServletParameterTest.do</url-pattern>
+  </servlet-mapping> 
+  
+  <servlet>
+  	<servlet-name>ErrorHandler</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T04_ErrorHandler</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ErrorHandler</servlet-name>
+  	<url-pattern>/ErrorHandler</url-pattern>
+  </servlet-mapping>
+  
+  
+  <error-page>
+  	<exception-type>javax.servlet.ServletException</exception-type>
+  	<location>/ErrorHandler</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/ErrorHandler</location>
+  </error-page>
+    
+    
+  <servlet>
+  	<servlet-name>T05_ServletCookieTest</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T05_ServletCookieTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>T05_ServletCookieTest</servlet-name>
+  	<url-pattern>/T05_ServletCookieTest</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>T06_ServletSessionTest</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T06_ServletSessionTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>T06_ServletSessionTest</servlet-name>
+  	<url-pattern>/T06_ServletSessionTest</url-pattern>
+  </servlet-mapping>  
+  
+  <servlet>
+  	<servlet-name>T08_ServletContextListenerTest</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T08_ServletContextListenerTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>T08_ServletContextListenerTest</servlet-name>
+  	<url-pattern>/T08_ServletContextListenerTest</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>T09_ServletRequestListenerTest</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T09_ServletRequestListenerTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>T09_ServletRequestListenerTest</servlet-name>
+  	<url-pattern>/T09_ServletRequestListenerTest</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>T10_SessionListenerTest</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T10_SessionListenerTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>T10_SessionListenerTest</servlet-name>
+  	<url-pattern>/T10_SessionListenerTest</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>T11_ImageServletTest</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T11_ImageServletTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>T11_ImageServletTest</servlet-name>
+  	<url-pattern>/T11_ImageServletTest</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>T12_DownloadServletTest</servlet-name>
+  	<servlet-class>kr.or.ddit.basic.T12_DownloadServletTest</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+  	<servlet-name>T12_DownloadServletTest</servlet-name>
+  	<url-pattern>/T12_DownloadServletTest</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>UploadServlet1</servlet-name>
+  	<servlet-class>kr.or.ddit.upload.UploadServlet1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UploadServlet1</servlet-name>
+  	<url-pattern>/upload1</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>UploadServlet2</servlet-name>
+  	<servlet-class>kr.or.ddit.upload.UploadServlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UploadServlet2</servlet-name>
+  	<url-pattern>/upload2</url-pattern>
+  </servlet-mapping>
+  
+  <listener>
+  	<display-name>MyServletContextListener</display-name>
+  	<listener-class>kr.or.ddit.basic.MyServletContextListener</listener-class>
+  </listener>
+  
+  <listener>
+  	<display-name>MyServletRequestListener</display-name>
+  	<listener-class>kr.or.ddit.basic.MyServletRequestListener</listener-class>
+  </listener>
+  
+  <listener>
+  	<display-name>MySessionAttributeListener</display-name>
+  	<listener-class>kr.or.ddit.basic.MySessionAttributeListener</listener-class>
+  </listener>
+  
+  <listener>
+  	<display-name>MySessionBindingListener</display-name>
+  	<listener-class>kr.or.ddit.basic.MySessionBindingListener</listener-class>
+  </listener>
+  
+  <filter>
+  	<filter-name>CustomEncoding</filter-name>
+  	<filter-class>kr.or.ddit.filter.CustomEncoding</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>CustomEncoding</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+<!--   <filter> -->
+<!--   	<filter-name>T07_ServletFilter</filter-name> -->
+<!--   	<filter-class>kr.or.ddit.basic.T07_ServletFilter</filter-class> -->
+<!--   	<init-param> -->
+<!--   		<param-name>init-param</param-name> -->
+<!--   		<param-value>필터 정상 작동됩니다.</param-value> -->
+<!--   	</init-param> -->
+<!--   </filter> -->
+<!--   <filter-mapping> -->
+<!--   	<filter-name>T07_ServletFilter</filter-name> -->
+<!--   	<url-pattern>/*</url-pattern> -->
+<!--   </filter-mapping> -->
+  
+<!--   <filter> -->
+<!--   	<filter-name>T07_ServletFilter2</filter-name> -->
+<!--   	<filter-class>kr.or.ddit.basic.T07_ServletFilter2</filter-class> -->
+<!--   </filter> -->
+<!--   <filter-mapping> -->
+<!--   	<filter-name>T07_ServletFilter2</filter-name> -->
+<!--   	<url-pattern>/*</url-pattern> -->
+<!--   </filter-mapping> -->
+  
+</web-app>
